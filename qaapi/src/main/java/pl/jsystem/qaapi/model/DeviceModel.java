@@ -1,4 +1,4 @@
-package pl.jsystem.qaapi;
+package pl.jsystem.qaapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

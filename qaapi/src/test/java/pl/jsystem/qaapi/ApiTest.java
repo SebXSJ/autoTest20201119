@@ -5,9 +5,15 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.jsystem.qaapi.model.SimpleUser;
+import pl.jsystem.qaapi.model.User;
+import pl.jsystem.qaapi.model.error.ErrorResponse;
 import pl.jsystem.qaapi.service.UserService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -99,4 +105,73 @@ public class ApiTest {
         assertThat(users.get(0).device.size()).isEqualTo(2);
 
     }
+
+    @DisplayName("Add user")
+    @Test
+    public void addUser() {
+        //given
+        SimpleUser user = new SimpleUser("Paweł", "Dubaj");
+
+        //when
+        List<SimpleUser> users = UserService.postUser(user);
+
+        //then
+        System.out.println(user.toString());
+        assertThat(users).isEmpty();
+    }
+
+    @DisplayName("Get simple user by id.")
+    @Test
+    public void getSimpleUserById() {
+        //given
+        long id = 1;
+
+        //when
+        SimpleUser user = UserService.getUser(id);
+
+        assertThat(user.name).isEqualTo("Piotr");
+        assertThat(user.surname).isEqualTo("Kowalski");
+    }
+
+    @DisplayName("Get user by queryParam and pathVariable.")
+    @Test
+    public void getUserByQueryParamAndPathVariable() {
+
+        //given
+        long id = 1;
+
+        List<String> idParams = new ArrayList<>();
+        idParams.add("Paweł");
+        idParams.add("Piotr");
+
+        Map<String, List<String>> queryParams = new HashMap<>();
+        queryParams.put("name", idParams);
+
+        //when
+        SimpleUser user = UserService.getUserByParams(queryParams, id);
+
+        //then
+        assertThat(user.name).isEqualTo("Piotr");
+        assertThat(user.surname).isEqualTo("Kowalski");
+
+    }
+
+    @DisplayName("Error response for incorrect id.")
+    @Test
+    public void errorResponse() {
+        //given
+        long id = 1;
+
+        //when
+        ErrorResponse errorResponse = UserService.getErrorResponse(id);
+
+        //then
+        assertThat(errorResponse.error.errorCode).isEqualTo(400);
+        assertThat(errorResponse.error.validationError).isEqualTo("invalid_email");
+        assertThat(errorResponse.error.message).isEqualTo("your email is invalid");
+    }
+
+
+
+
 }
