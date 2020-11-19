@@ -5,6 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.jsystem.qaapi.service.UserService;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ApiTest {
 
     @DisplayName("Api first test")
     @Test
-    public void firstApiTest (){
+    public void firstApiTest() {
         RestAssured
                 .given()
                 .get("http://www.mocky.io/v2/5a6b69ec3100009d211b8aeb").
@@ -28,13 +29,11 @@ public class ApiTest {
                 .body("surname", equalTo("Kowalski"));
 
 
-
-
     }
 
     @DisplayName("User with device test")
     @Test
-    public void userDevices (){
+    public void userDevices() {
         RestAssured
                 .given()
                 .get("http://www.mocky.io/v2/5a6a58222e0000d0377a7789").
@@ -46,18 +45,18 @@ public class ApiTest {
                 .body("[0].nazwisko", notNullValue())
                 .body("[0].nazwisko", equalTo("Kowalski"))
                 .body("[0].device[0].type", equalTo("computer"));
-                //.body("[0].device[0].device.model[0].produce", equalTo("dell"));
+        //.body("[0].device[0].device.model[0].produce", equalTo("dell"));
 
 
     }
 
     @DisplayName("User with device by model")
     @Test
-    public void  userDeviceByModel(){
+    public void userDeviceByModel() {
         List<User> users = RestAssured
                 .given()
                 .get("http://www.mocky.io/v2/5a6a58222e0000d0377a7789").
-                then()
+                        then()
                 .assertThat()
                 .statusCode(200)
                 .extract()
@@ -74,16 +73,23 @@ public class ApiTest {
 
     @DisplayName("User whit device split response")
     @Test
-    public void  splitResponse(){
-        Response response = RestAssured
-                .given()
-                .get("http://www.mocky.io/v2/5a6a58222e0000d0377a7789")
-                .andReturn();
+    public void splitResponse() {
+//        Response response = RestAssured
+//                .given()
+//                .get("http://www.mocky.io/v2/5a6a58222e0000d0377a7789")
+//                .andReturn();
 
-        List<User> users = response.then().extract().body().jsonPath().getList("", User.class);
 
+//        List<User> users = response.then().extract().body().jsonPath().getList("", User.class);
+//        List<User> users = response.then().extract().body().jsonPath().getList("", User.class);
+
+        //given
+        //when
+        Response response = UserService.returnUserResponse();
+        List<User> users = UserService.getUsers();
+
+        //then
         assertThat(response.statusCode()).isEqualTo(200);
-
         assertThat(users.get(0).imie).isEqualTo("Piotr");
         assertThat(users.size()).isEqualTo(2);
         assertThat(users.get(0).nazwisko).isEqualTo("Kowalski");
