@@ -30,7 +30,7 @@
         <guava>27.1-jre</guava>
         <typesafe.config>1.4.1</typesafe.config>
         <cucumber>6.9.0</cucumber>
-        <junit>4.13</junit>
+        <junit>4.13.1</junit>
         <webdrivermanager>4.2.2</webdrivermanager>
     </properties>
 
