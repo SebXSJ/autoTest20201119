@@ -4,8 +4,8 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import pl.jsystem.qaapi.model.SimpleUser;
-import pl.jsystem.qaapi.model.User;
+import pl.jsystem.qaapi.model.usersDevice.SimpleUser;
+import pl.jsystem.qaapi.model.usersDevice.User;
 import pl.jsystem.qaapi.model.error.ErrorResponse;
 import pl.jsystem.qaapi.specification.Specification;
 

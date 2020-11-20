@@ -5,8 +5,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.jsystem.qaapi.model.SimpleUser;
-import pl.jsystem.qaapi.model.User;
+import pl.jsystem.qaapi.model.usersDevice.SimpleUser;
+import pl.jsystem.qaapi.model.usersDevice.User;
 import pl.jsystem.qaapi.model.error.ErrorResponse;
 import pl.jsystem.qaapi.service.UserService;
 
