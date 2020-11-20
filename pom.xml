@@ -13,6 +13,7 @@
         <module>qajunit</module>
         <module>qagui</module>
         <module>qaapi</module>
+        <module>qadatabase</module>
     </modules>
 
     <properties>
@@ -33,6 +34,7 @@
         <cucumber>6.9.0</cucumber>
         <junit>4.13</junit>
         <webdrivermanager>4.2.2</webdrivermanager>
+        <rest-assured>4.3.2</rest-assured>
     </properties>
 
     <dependencyManagement>
@@ -179,12 +181,14 @@
                 <artifactId>webdrivermanager</artifactId>
                 <version>${webdrivermanager}</version>
             </dependency>
-
+            <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
             <dependency>
                 <groupId>io.rest-assured</groupId>
                 <artifactId>rest-assured</artifactId>
-                <version>4.3.2</version>
+                <version>${rest-assured}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/oracle/oracle-jdbc -->
 
 
         </dependencies>
@@ -228,6 +232,9 @@
                                 </name>
                             </property>
                         </systemProperties>
+                        <includes>
+                            <include>**/*Test.java</include>
+                        </includes>
                     </configuration>
                 </plugin>
 
