@@ -16,4 +16,6 @@ public class GuiConfig {
     public static final String BASE_URL = ENV.getString("baseUrl");
     public static final String LOGIN = ENV.getString("login");
     public static final String PASSWORD = ENV.getString("password");
+
+
 }
