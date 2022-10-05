@@ -22,7 +22,7 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <google-truth.version>1.1</google-truth.version>
         <allure-junit5>2.13.6</allure-junit5>
-        <jackson-databind>2.11.3</jackson-databind>
+        <jackson-databind>2.12.6.1</jackson-databind>
         <jackson-module-jaxb-annotations>2.11.3</jackson-module-jaxb-annotations>
         <allure-maven>2.10.0</allure-maven>
         <allure>2.13.6</allure>
